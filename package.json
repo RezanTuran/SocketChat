@@ -1,0 +1,25 @@
+{
+  "name": "socketchat",
+  "version": "1.0.0",
+  "description": "Realtime chat with socket io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RezanTuran/SocketChat.git"
+  },
+  "author": "Rezan AND Yesica",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RezanTuran/SocketChat/issues"
+  },
+  "homepage": "https://github.com/RezanTuran/SocketChat#readme",
+  "dependencies": {
+    "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
