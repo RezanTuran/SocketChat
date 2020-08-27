@@ -2,6 +2,12 @@
 
 const socket = io()
 
+//Message from server
+socket.on('message', message => {
+    document.querySelector('h1').innerText = message
+    console.log(message);
+})
+
 function printGiphy(giphy) {
 
     let fig = document.createElement('figure')

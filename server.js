@@ -15,7 +15,7 @@ io.on('connection', socket => {
     //console.log('New Connection....');
 
     // Welcome Message
-    socket.emit('message', 'Välkommen')
+    socket.emit('message', 'Välkommen till Chatten!')
 
     // Broadcst when a user connects
     socket.broadcast.emit('message', 'A user has joined the chat');
