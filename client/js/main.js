@@ -1,54 +1,71 @@
-const chatForm = document.getElementById('chatForm');
-
-const socket = io();
-
-//Message from server
-socket.on('message', message => {
-    console.log(message);
-    outPutMessage(message)
-})
 
 
-// Message submit
-chatForm.addEventListener('submit', (e) =>{
-    e.preventDefault();
+const socket = io()
 
-    //Get message
-    const msg = e.target.elements.msg.value;
-    //console.log(msg);
+function printGiphy(giphy) {
 
+    let fig = document.createElement('figure')
+    let image = document.createElement('img')
+    let fc = document.createElement('figcaption')
 
-    // Emit message to server
-    socket.emit('chatMessage', msg);
+    image.src = giphy[0].images.downsized.url
+    image.alt = giphy[0].title
+    fc.textContent = giphy[0].title
+    console.log(giphy)
 
-    // Clear input after enter
-    e.target.elements.msg.value = ''
-})
+    fig.appendChild(image)
+    fig.appendChild(fc)
 
-// Output message
-function outPutMessage(message) {
-    const div = document.createElement('div');
-    div.innerHTML = `<p>${message}</p>`;
-    document.querySelector('.chat-messages').appendChild(div)
+    let out = document.getElementById('imgBox')
+    out.insertAdjacentElement('afterbegin', fig)
 }
 
+socket.on('chat message', function (msg) {
+    
+    if (msg.type == "text") {
+        const chatList = document.getElementById('chatList')
+        const newMessage = document.createElement('li')
+        newMessage.innerText = msg.content
+        chatList.append(newMessage)
 
-// function test() {
-//     const users = [
-//         {
-//             userName: "Rezan"
-//         },{
-//             userName: "Turan"
-//         }
-//     ]
+    } else if (msg.type == "img") {
+        let giphy = msg.content
+        printGiphy(giphy)
+    }
 
-//     for (let i = 0; i < users.length; i++) {
-          
-//     const x = document.getElementById("userName").value
-//     console.log(x);
+    console.log(msg)
 
-//     if(x === users[i].userName){ 
-//         location.href = "http://localhost:3000/"
-//     }
-// }
-// }
+})
+
+async function sendMessage() {
+    const message = document.getElementById("m").value
+
+    if (message[0] == "/") {
+        console.log("Gör anrop till api och skicka bildurl")
+
+        const imageUrl = await getApi()
+        socket.emit('chat message', { type: "img", content: imageUrl })
+    } else {
+        socket.emit('chat message', { type: "text", content: message })
+    }
+
+    clearInput()
+}
+
+function clearInput() {
+    let clear = document.getElementById('m').value = ""
+}
+
+let APIKey = "vIhQ9o1NuNd44YbdSoHPl19gmhQ1OfTH"
+
+async function getApi() {
+    let url = `http://api.giphy.com/v1/gifs/search?api_key=${APIKey}&limit=1&q=`
+    let str = document.getElementById('m').value
+    url = url.concat(str)
+    console.log(url)
+
+    const response = await fetch(url)
+    const content = await response.json()
+
+    return content.data
+}

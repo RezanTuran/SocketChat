@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>SocketChat</title>
 </head>
+
 <body>
+    <h1>Välkommen till Chatten!</h1>
 
+    <div class="chatBox">
+        <ul id="chatList"></ul>
+    </div>
 
-  <form id="chatForm">
-      <input type="text" id="msg" autocomplete="off" placeholder="Skriv meddelande" required>
-      <button type="submit">Skicka</button>
-  </form>
-  <div class="chat-messages">
+    <div>
+        <input id="m" autocomplete="off"/>
+        <button onclick="sendMessage()">Skicka</button>
+    </div>
+    <div>
+        
+    </div>
 
-
-
-  </div>
-
-  
+    <div id="imgBox">
+        <img src="" alt="">
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="js/main.js"></script>
 </body>
+
 </html>
