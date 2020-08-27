@@ -1,33 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>SocketChat</title>
 </head>
-
 <body>
+
+    <style>
+        #gifBox{
+            display: none;
+            width: 10em;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        li{
+            cursor: pointer;
+        }
+    </style>
+
     <h1>
         
     </h1>
 
     <div class="chatBox">
         <ul id="chatList"></ul>
+        <div id="imgBox">
+            <img src="" alt="">
+        </div>
     </div>
 
     <div>
-        <input id="m" autocomplete="off"/>
-        <button onclick="sendMessage()">Skicka</button>
+        <input oninput="dropDown()" id="m" autocomplete="off"/>
+        <li onclick="setValue()" id="gifBox">gif/</li>
+        <button type="submit" onclick="sendMessage()">Skicka</button>
     </div>
     <div>
         
     </div>
 
-    <div id="imgBox">
-        <img src="" alt="">
-    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script defer src="js/main.js"></script>
