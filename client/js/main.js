@@ -1,0 +1,54 @@
+const chatForm = document.getElementById('chatForm');
+
+const socket = io();
+
+//Message from server
+socket.on('message', message => {
+    console.log(message);
+    outPutMessage(message)
+})
+
+
+// Message submit
+chatForm.addEventListener('submit', (e) =>{
+    e.preventDefault();
+
+    //Get message
+    const msg = e.target.elements.msg.value;
+    //console.log(msg);
+
+
+    // Emit message to server
+    socket.emit('chatMessage', msg);
+
+    // Clear input after enter
+    e.target.elements.msg.value = ''
+})
+
+// Output message
+function outPutMessage(message) {
+    const div = document.createElement('div');
+    div.innerHTML = `<p>${message}</p>`;
+    document.querySelector('.chat-messages').appendChild(div)
+}
+
+
+// function test() {
+//     const users = [
+//         {
+//             userName: "Rezan"
+//         },{
+//             userName: "Turan"
+//         }
+//     ]
+
+//     for (let i = 0; i < users.length; i++) {
+          
+//     const x = document.getElementById("userName").value
+//     console.log(x);
+
+//     if(x === users[i].userName){ 
+//         location.href = "http://localhost:3000/"
+//     }
+// }
+// }
