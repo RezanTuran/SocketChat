@@ -30,7 +30,7 @@ socket.on('chat message', function (msg) {
     
     if (msg.type == "text") {
         const chatList = document.getElementById('chatList')
-        const newMessage = document.createElement('li')
+        const newMessage = document.createElement('p')
         newMessage.innerText = msg.content
         chatList.append(newMessage)
 
@@ -54,7 +54,13 @@ async function sendMessage() {
     } else {
         socket.emit('chat message', { type: "text", content: message })
     }
-
+    if(message === ""){
+        Swal.fire({
+            icon: 'error',
+            title: 'OBS...',
+            text: 'Skriv ditt meddelande',
+          })
+    }
     clearInput()
 }
 function dropDown() {
@@ -72,7 +78,6 @@ function setValue(){
     const gifBox = document.getElementById("gifBox")
     gifBox.style.display = "none"
 }
-
 
 function clearInput() {
     let clear = document.getElementById('m').value = ""
