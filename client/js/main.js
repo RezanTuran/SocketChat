@@ -76,6 +76,7 @@ async function sendMessage() {
     const message = document.getElementById("m").value
     const nickName = document.getElementById("userName").value
 
+
     if (message[0] == "/") {
         console.log("Gör anrop till api och skicka bildurl")
 
@@ -93,6 +94,9 @@ async function sendMessage() {
     }
     clearInput()
 }
+
+
+
 function dropDown() {
     const message = document.getElementById("m").value
     const gifBox = document.getElementById("gifBox")
