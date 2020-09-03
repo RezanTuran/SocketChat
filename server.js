@@ -15,7 +15,7 @@ io.on('connection', socket => {
     //console.log('New Connection....');
 
     // Welcome Message
-    socket.emit('message', 'Välkommen till Chatten!')
+        //socket.emit('message', 'Välkommen!')
 
     // Broadcst when a user connects
     socket.broadcast.emit('message', 'A user has joined the chat');
@@ -31,6 +31,7 @@ io.on('connection', socket => {
     })
 
 });
+
 
 const PORT = 3000 || process.env.PORT
 

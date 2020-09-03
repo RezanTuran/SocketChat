@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #17a2b8;
+    height: 100vh;
+  }
+
+  #gifBox{
+    display: none;
+    width: 10em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+li{
+    cursor: pointer;
+}
+  #login .container #login-row #login-column #login-box {
+    margin-top: 120px;
+    max-width: 600px;
+    height: 320px;
+    border: 1px solid #9C9C9C;
+    background-color: rgba(10, 10, 10, 0.8);
+  }
+  #login .container #login-row #login-column #login-box #login-form {
+    padding: 20px;
+  }
+  #login .container #login-row #login-column #login-box #login-form #register-link {
+    margin-top: -85px;
+  }
+  
+  #loginSection{
+      background: url(../img/back.jpg);
+      background-size: contain;
+      height: 100vh;
+  }
+
+  #backgorund-color{
+      background-color: rgba(10, 10, 10, 0.6);
+      height: 100vh;
+  }
+
+  *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+  }
+
+  #hideSection{
+      place-items: center;
+      background: url(../img/back.jpg);
+      background-size: contain;
+      height: 100vh;
+
+  }
+
+  #chatContainer{
+      min-width: 800px;
+      max-width: 1000px;
+      width: 100%;
+      height: 80vh;
+      background: rgba(10, 10, 10, 0.9);
+      border-radius: 10px;
+      overflow: auto;
+  }
+.messeageInput{
+   width: 100%;
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: rgba(10, 10, 10, 0.9);
+  color: red;
+}
+.input-group-append{
+position: fixed;
+   bottom: 0;
+   width: 100%;
+   min-width: 800px;
+    max-width: 1002px;
+    margin-bottom: 3em;
+}
+#downGiftInput{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    min-width: 800px;
+    max-width: 1002px;
+    margin-bottom: -3px;
+    background: white;
+    border-radius: 4px;
+}
+
+#welcomeText{
+    font-family: Bangers;
+    font-weight: bolder;
+    text-align: center;
+    color: wheat;
+}
+
+#backgorund-color-chat{
+    background-color: rgba(10, 10, 10, 0.6);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#sendButton{
+    background-color: wheat;
+    color: black;
+}
+#chatList{
+    color: red;
+    margin-left: 2em;
+}
