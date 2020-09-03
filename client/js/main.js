@@ -2,11 +2,7 @@
 
 const socket = io()
 
-//Message from server
-socket.on('message', message => {
-    document.querySelector('h1').innerText = message
-    console.log(message);
-})
+
 
 function printGiphy(giphy) {
 
@@ -26,14 +22,47 @@ function printGiphy(giphy) {
     out.insertAdjacentElement('afterbegin', fig)
 }
 
-socket.on('chat message', function (msg) {
+let hideBody = document.getElementById("hideSection");
+hideBody.style.display = "none"
+
+
+let send = document.getElementById("send")
+
+send.onclick = function () {
+    let hideBody = document.getElementById("hideSection");
+    hideBody.style.display = "grid"
+
+    let hideLoginSection = document.getElementById("loginSection")
+    hideLoginSection.style.display = "none"
     
+    const nickName = document.getElementById("userName").value
+    const welcomeText = document.getElementById("welcomeText")
+    welcomeText.innerHTML = "Välkommen! " + nickName
+
+//Message from server
+socket.on('message', message => {
+   let newUser =  document.querySelector('h1')
+   newUser.innerText = message
+    console.log(message);
+})
+    
+    // Login Validation
+    if(nickName === ""){
+        alert("Skriv nickname för kunna komma in chaten..!")
+        location.href = "http://localhost:3000/"
+    }else if(nickName === "null"){
+        welcomeText.innerHTML = "Välkommen! " + "guest"
+    }
+}
+
+
+socket.on('chat message', function (msg) {
+
     if (msg.type == "text") {
         const chatList = document.getElementById('chatList')
-        const newMessage = document.createElement('p')
-        newMessage.innerText = msg.content
+        const newMessage = document.createElement('p') 
+        newMessage.innerText = msg.sender + ":    " + msg.content
         chatList.append(newMessage)
-
     } else if (msg.type == "img") {
         let giphy = msg.content
         printGiphy(giphy)
@@ -45,14 +74,15 @@ socket.on('chat message', function (msg) {
 
 async function sendMessage() {
     const message = document.getElementById("m").value
+    const nickName = document.getElementById("userName").value
 
     if (message[0] == "/") {
         console.log("Gör anrop till api och skicka bildurl")
 
         const imageUrl = await getApi()
-        socket.emit('chat message', { type: "img", content: imageUrl })
+        socket.emit('chat message', { type: "img", content: imageUrl , sender: nickName})
     } else {
-        socket.emit('chat message', { type: "text", content: message })
+        socket.emit('chat message', { type: "text", content: message , sender: nickName })
     }
     if(message === ""){
         Swal.fire({
@@ -96,3 +126,4 @@ async function getApi() {
 
     return content.data
 }
+
